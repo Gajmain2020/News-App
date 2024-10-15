@@ -6,7 +6,9 @@ export default function account() {
   return (
     <SafeAreaView>
       <Text>account page</Text>
-      <Link href={"/accountInfo"}>Account Information</Link>
+      <Link href={"/accountInfo"}>
+        <Text>Account info here</Text>
+      </Link>
     </SafeAreaView>
   );
 }
