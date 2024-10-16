@@ -5,8 +5,17 @@ import { ThemedView } from "@/components/ThemedView";
 import { useWallpaper, Wallpaper } from "@/hooks/useWallpapers";
 import { LinearGradient } from "expo-linear-gradient";
 import { useState } from "react";
-import { FlatList, Image, StyleSheet, View } from "react-native";
+import { FlatList, Image, LogBox, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+
+// this is a dumb error which i tried to rectify but is not
+// If you try and head up to a bump over your head that i could not do this as well
+//  just increase the counter below by how much time you spent on the error
+// Hours_spent = 2
+
+LogBox.ignoreLogs([
+  "VirtualizedLists should never be nested", // the exact warning message
+]);
 
 export default function Explore() {
   const wallpapers = useWallpaper();
@@ -36,24 +45,22 @@ export default function Explore() {
           </View>
         }
       >
-        <ThemedView style={styles.container}>
-          <FlatList
-            data={wallpapers}
-            renderItem={({ item }) => (
-              <View style={styles.cardSpacing}>
-                <NewsCard
-                  onPress={() => {
-                    setSelectedNews(item);
-                  }}
-                  wallpaper={item}
-                />
-              </View>
-            )}
-            keyExtractor={(item) => item.url}
-            contentContainerStyle={styles.listContainer}
-            ItemSeparatorComponent={() => <View style={styles.separator} />}
-          />
-        </ThemedView>
+        <FlatList
+          data={wallpapers}
+          renderItem={({ item }) => (
+            <View style={styles.cardSpacing}>
+              <NewsCard
+                onPress={() => {
+                  setSelectedNews(item);
+                }}
+                wallpaper={item}
+              />
+            </View>
+          )}
+          keyExtractor={(item) => item.title}
+          contentContainerStyle={styles.listContainer}
+          ItemSeparatorComponent={() => <View style={styles.separator} />}
+        />
       </ParallaxScrollView>
       {selectedNews && (
         <DetailNews

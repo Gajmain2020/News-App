@@ -5,84 +5,136 @@ export interface Wallpaper {
   desc: string;
 }
 
-export function useWallpaper(): Wallpaper[] {
+interface FullWallpaper extends Wallpaper {
+  saved: boolean;
+  suggested: boolean;
+  library: boolean;
+}
+
+export function useSuggestedWallpapers(): FullWallpaper[] {
+  const wallpapers = useWallpaper();
+  return wallpapers.filter((w) => w.suggested);
+}
+export function useSavedWallpapers(): FullWallpaper[] {
+  const wallpapers = useWallpaper();
+  return wallpapers.filter((w) => w.saved);
+}
+export function useLibraryWallpaper(): FullWallpaper[] {
+  const wallpapers = useWallpaper();
+  return wallpapers.filter((w) => w.library);
+}
+
+export function useWallpaper(): FullWallpaper[] {
   return [
     {
       url: "https://ideogram.ai/assets/progressive-image/balanced/response/P6W0ehVmRO2g4wlQ-aWRjA",
-      title: "Title 1 lorem10",
+      title: "Breaking News: Tech Innovations",
       urlToImage:
         "https://ideogram.ai/assets/progressive-image/balanced/response/P6W0ehVmRO2g4wlQ-aWRjA",
-      desc: "this is deskjdsk skjdjksj kshhdks ksdkj skhdkjs ksdkj ksjdksj ksjdksj ksjdjksj skjdskjd skjdksjd sjdksj skjdskd sdksj",
+      desc: "Explore the latest advancements in technology that are shaping the future.",
+      saved: false,
+      suggested: false,
+      library: true,
     },
     {
       url: "https://ideogram.ai/assets/progressive-image/balanced/response/1Z_WSZpTRKmJr4P0EzCGmg",
-      title: "Title 1 lorem10",
+      title: "Health Update: New Discoveries",
       urlToImage:
         "https://ideogram.ai/assets/progressive-image/balanced/response/1Z_WSZpTRKmJr4P0EzCGmg",
-      desc: "this is deskjdsk skjdjksj kshhdks ksdkj skhdkjs ksdkj ksjdksj ksjdksj ksjdjksj skjdskjd skjdksjd sjdksj skjdskd sdksj",
+      desc: "Recent studies reveal groundbreaking discoveries in the health sector.",
+      saved: false,
+      suggested: false,
+      library: true,
     },
     {
       url: "https://ideogram.ai/assets/progressive-image/balanced/response/U0djTlVWRTiewg8BMBF_SQ",
-      title: "Title 1 lorem10",
+      title: "World Events: Global Summit Recap",
       urlToImage:
         "https://ideogram.ai/assets/progressive-image/balanced/response/U0djTlVWRTiewg8BMBF_SQ",
-      desc: "this is deskjdsk skjdjksj kshhdks ksdkj skhdkjs ksdkj ksjdksj ksjdksj ksjdjksj skjdskjd skjdksjd sjdksj skjdskd sdksj",
+      desc: "A summary of key discussions and outcomes from the recent global summit.",
+      saved: false,
+      suggested: false,
+      library: true,
     },
     {
       url: "https://ideogram.ai/assets/progressive-image/balanced/response/zMhqSEr7Qi6187Ybt5WjPg",
-      title: "Title 1 lorem10",
+      title: "Sports: Championship Highlights",
       urlToImage:
         "https://ideogram.ai/assets/progressive-image/balanced/response/zMhqSEr7Qi6187Ybt5WjPg",
-      desc: "this is deskjdsk skjdjksj kshhdks ksdkj skhdkjs ksdkj ksjdksj ksjdksj ksjdjksj skjdskjd skjdksjd sjdksj skjdskd sdksj",
+      desc: "Catch up on the most exciting moments from this year's championship.",
+      saved: false,
+      suggested: false,
+      library: true,
     },
     {
       url: "https://ideogram.ai/assets/progressive-image/balanced/response/37A5cHMKRmGOTcxiyQeqNQ",
-      title: "Title 1 lorem10",
+      title: "Travel: Top Destinations to Visit",
       urlToImage:
         "https://ideogram.ai/assets/progressive-image/balanced/response/37A5cHMKRmGOTcxiyQeqNQ",
-      desc: "this is deskjdsk skjdjksj kshhdks ksdkj skhdkjs ksdkj ksjdksj ksjdksj ksjdjksj skjdskjd skjdksjd sjdksj skjdskd sdksj",
+      desc: "Discover the must-visit travel destinations for your next vacation.",
+      saved: false,
+      suggested: true,
+      library: false,
     },
     {
       url: "https://ideogram.ai/assets/progressive-image/balanced/response/U0djTlVWRTiewg8BMBF_SQ",
-      title: "Title 1 lorem10",
+      title: "Finance: Market Trends",
       urlToImage:
         "https://ideogram.ai/assets/progressive-image/balanced/response/U0djTlVWRTiewg8BMBF_SQ",
-      desc: "this is deskjdsk skjdjksj kshhdks ksdkj skhdkjs ksdkj ksjdksj ksjdksj ksjdjksj skjdskjd skjdksjd sjdksj skjdskd sdksj",
+      desc: "An analysis of current market trends and investment opportunities.",
+      saved: true,
+      suggested: false,
+      library: true,
     },
     {
       url: "https://ideogram.ai/assets/progressive-image/balanced/response/goaRhF8sQ9-tn0Gg0jmpKw",
-      title: "Title 1 lorem10",
+      title: "Environment: Climate Change",
       urlToImage:
         "https://ideogram.ai/assets/progressive-image/balanced/response/goaRhF8sQ9-tn0Gg0jmpKw",
-      desc: "this is deskjdsk skjdjksj kshhdks ksdkj skhdkjs ksdkj ksjdksj ksjdksj ksjdjksj skjdskjd skjdksjd sjdksj skjdskd sdksj",
+      desc: "A deep dive into the impacts of climate change on our planet.",
+      saved: false,
+      suggested: true,
+      library: false,
     },
     {
       url: "https://ideogram.ai/assets/progressive-image/balanced/response/wqLRpHt1Q_iv31P5ge3ayA",
-      title: "Title 1 lorem10",
+      title: "Entertainment: Movie Releases",
       urlToImage:
         "https://ideogram.ai/assets/progressive-image/balanced/response/wqLRpHt1Q_iv31P5ge3ayA",
-      desc: "this is deskjdsk skjdjksj kshhdks ksdkj skhdkjs ksdkj ksjdksj ksjdksj ksjdjksj skjdskjd skjdksjd sjdksj skjdskd sdksj",
+      desc: "Explore the most anticipated movie releases of the year.",
+      saved: true,
+      suggested: false,
+      library: true,
     },
     {
       url: "https://ideogram.ai/assets/progressive-image/balanced/response/ILXQ_xJOQuiwcdnnrVYnvw",
-      title: "Title 1 lorem10",
+      title: "Lifestyle: Home Decor Trends",
       urlToImage:
         "https://ideogram.ai/assets/progressive-image/balanced/response/ILXQ_xJOQuiwcdnnrVYnvw",
-      desc: "this is deskjdsk skjdjksj kshhdks ksdkj skhdkjs ksdkj ksjdksj ksjdksj ksjdjksj skjdskjd skjdksjd sjdksj skjdskd sdksj",
+      desc: "Get inspired by the latest home decor trends to refresh your space.",
+      saved: true,
+      suggested: true,
+      library: true,
     },
     {
       url: "https://ideogram.ai/assets/progressive-image/balanced/response/WDDFsQf-SPiGGx31qLY03w",
-      title: "Title 1 lorem10",
+      title: "Science: Space Exploration",
       urlToImage:
         "https://ideogram.ai/assets/progressive-image/balanced/response/WDDFsQf-SPiGGx31qLY03w",
-      desc: "this is deskjdsk skjdjksj kshhdks ksdkj skhdkjs ksdkj ksjdksj ksjdksj ksjdjksj skjdskjd skjdksjd sjdksj skjdskd sdksj",
+      desc: "Discover the latest achievements in space exploration and research.",
+      saved: false,
+      suggested: true,
+      library: true,
     },
     {
       url: "https://ideogram.ai/assets/progressive-image/balanced/response/QRH7f3RQQfmRDuONFyaqhg",
-      title: "Title 1 lorem10",
+      title: "Education: Learning Innovations",
       urlToImage:
         "https://ideogram.ai/assets/progressive-image/balanced/response/QRH7f3RQQfmRDuONFyaqhg",
-      desc: "this is deskjdsk skjdjksj kshhdks ksdkj skhdkjs ksdkj ksjdksj ksjdksj ksjdjksj skjdskjd skjdksjd sjdksj skjdskd sdksj",
+      desc: "A look at innovative approaches to learning in today's education system.",
+      saved: false,
+      suggested: true,
+      library: true,
     },
   ];
 }
